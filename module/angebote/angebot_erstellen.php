@@ -41,7 +41,7 @@ include '../../inc/connect.php';
 	$pos2dsc = $_POST['dsc'][1];
 	$pos2ep = $_POST['ep'][1];
 
-    // 3. String f�r SQL-Anweisung erstellen
+    // 3. String für SQL-Anweisung erstellen
 	$insertString = "INSERT INTO angebote (kunde, anrede, datum, referenz, zahlungsbedingungen, pos1anz, pos1einheit, pos1dsc, pos1ep, pos2anz, pos2einheit, pos2dsc, pos2ep)
 	VALUES ('$kunde', '$anrede', '$datum', '$referenz', '$zahlungsbedingungen', '$pos1anz', '$pos1einheit', '$pos1dsc', '$pos1ep', '$pos2anz', '$pos2einheit', '$pos2dsc', '$pos2ep');";
 
@@ -64,7 +64,7 @@ include '../../inc/connect.php';
     // 1. Verbindung zur Datenbank herstellen
 	include '../../inc/connect.php';
 
-    // 2. Prüfe Radio-Button-Auswahl
+    // 2. PrÃ¼fe Radio-Button-Auswahl
 	if(isset($_GET["auswahl"])){
 
     // 3. Datenbankabfrage starten
@@ -82,15 +82,14 @@ include '../../inc/connect.php';
 	$plz = $dsatz["plz"];
 	$ort = $dsatz["ort"];
 
+}		
+		
     // 5. Das Bearbeiten-Formular anzeigen
+	echo"<form action='angebot_erstellen.php' method='post'>";
 	echo "<input name='id' type='hidden' value='$id'>";
 	echo "<textarea name='kunde' rows='10' cols='30'>$firma\n$vorname $nachname\n$strasse\n$plz $ort</textarea>";
-	echo "</form>";
-}
 
 ?>
-
-<form action='angebot_erstellen.php' method='post'>
 
 	</div>
 
@@ -107,7 +106,7 @@ include '../../inc/connect.php';
 
 <br><br>
 
-<!-- Hier beginnt die Angebotsbearbeitung f�r Positionen -->
+<!-- Hier beginnt die Angebotsbearbeitung für Positionen -->
 
 <!-- Positionen -->
 <div id="docpos">
