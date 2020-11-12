@@ -5,7 +5,8 @@ include 'inc/nav.php';
 
 <section>
 <h2>Changelog</h2><br><br>
-06.11.2020 - v.0.1.4 - Kundenauswahl f&uuml;r Angebot erstellt, Angebote anzeigen erstellt, Verzeichnisstruktur verbessert<br><br>
+12.11.2020 - v.0.1.5 - Angebote erstellen erstellt
+06.11.2020 - v.0.1.4 - Kundenauswahl f&uuml;r Angebot erstellen, Angebote anzeigen erstellt, Verzeichnisstruktur verbessert<br><br>
 05.11.2020 - v.0.1.3 - Suchfunktion in Kundenstamm integriert, CSS anpassungen<br><br>
 07.10.2020 - v.0.1.2 - Benutzeranmeldung implementiert<br><br>
 02.10.2020 - v.0.1.1 - Kunden bearbeiten hinzugef&uuml;gt<br><br>
