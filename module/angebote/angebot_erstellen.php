@@ -20,6 +20,8 @@ textarea {
 
 <section>
 
+<h1>Angebot erstellen</h1>
+
 <?php
     if(isset($_POST["angebot-erstellen"])){
 
@@ -32,6 +34,9 @@ include '../../inc/connect.php';
 	$datum = $_POST["datum"];
 	$referenz = $_POST["referenz"];
 	$zahlungsbedingungen = $_POST["zahlungsbedingungen"];
+	$netto = $_POST["netto"];
+	$mwst = $_POST["mwst"];
+	$brutto = $_POST["brutto"];
 	$pos1anz = $_POST['anz'][0];
 	$pos1einheit = $_POST['einheit'][0];
 	$pos1dsc = $_POST['dsc'][0];
@@ -42,8 +47,8 @@ include '../../inc/connect.php';
 	$pos2ep = $_POST['ep'][1];
 
     // 3. String für SQL-Anweisung erstellen
-	$insertString = "INSERT INTO angebote (kunde, anrede, datum, referenz, zahlungsbedingungen, pos1anz, pos1einheit, pos1dsc, pos1ep, pos2anz, pos2einheit, pos2dsc, pos2ep)
-	VALUES ('$kunde', '$anrede', '$datum', '$referenz', '$zahlungsbedingungen', '$pos1anz', '$pos1einheit', '$pos1dsc', '$pos1ep', '$pos2anz', '$pos2einheit', '$pos2dsc', '$pos2ep');";
+	$insertString = "INSERT INTO angebote (kunde, anrede, datum, referenz, zahlungsbedingungen, netto, mwst, brutto, pos1anz, pos1einheit, pos1dsc, pos1ep, pos2anz, pos2einheit, pos2dsc, pos2ep)
+	VALUES ('$kunde', '$anrede', '$datum', '$referenz', '$zahlungsbedingungen', '$netto', '$mwst', '$brutto', '$pos1anz', '$pos1einheit', '$pos1dsc', '$pos1ep', '$pos2anz', '$pos2einheit', '$pos2dsc', '$pos2ep');";
 
     // SQL-Anweisung durchfuehren
     $check = mysqli_query($connect, $insertString);
@@ -51,21 +56,20 @@ include '../../inc/connect.php';
     if($check) {
         echo '<span style="color: green;" /><strong>Angebot erfolgreich erstellt</strong></span>';
     }}
-?>
 
-<h1>Angebot erstellen</h1>
+// Hier wird der Kunde ausgegeben
 
-  <div class="row">
-	<div class="column3">
-
-<?php
-
-// Kundenauswahl Verarbeitung
+  // Kundenauswahl Verarbeitung
     // 1. Verbindung zur Datenbank herstellen
 	include '../../inc/connect.php';
 
-    // 2. PrÃ¼fe Radio-Button-Auswahl
+    // 2. Prüfe Radio-Button-Auswahl
 	if(isset($_GET["auswahl"])){
+
+    // 3. Datenbankabfrage starten
+    $id = $_GET["auswahl"];
+    $abfrage = "SELECT * FROM kunden WHERE id = $id";
+    $result = mysqli_query($connect, $abfrage);
 
     // 3. Datenbankabfrage starten
 	$id = $_GET["auswahl"];
@@ -83,41 +87,35 @@ include '../../inc/connect.php';
 	$ort = $dsatz["ort"];
 
 }		
-		
+
     // 5. Das Bearbeiten-Formular anzeigen
-	echo"<form action='angebot_erstellen.php' method='post'>";
+	echo "<form action='angebot_erstellen.php' method='post'>";
+	echo "<div class='column3'>";
 	echo "<input name='id' type='hidden' value='$id'>";
 	echo "<textarea name='kunde' rows='10' cols='30'>$firma\n$vorname $nachname\n$strasse\n$plz $ort</textarea>";
-
+	echo "</div>";
 ?>
-
-	</div>
-
+	
 	<div class="column3">
 		<textarea name="anrede" id="anrede" rows="10" cols="30" placeholder="Anrede"/></textarea>
 	</div>
-
 	<div class="column3">
 		<input type="date" name="datum" value="<?php echo date('Y-m-d'); ?>"/>
 		<input type="text" name="angebotid" placeholder="Angebotsnummer (wird automatisch vergeben)"/>
 		<input type="text" name="referenz" placeholder="Referenz"/>
 	</div>
-  </div>
-
-<br><br>
 
 <!-- Hier beginnt die Angebotsbearbeitung für Positionen -->
-
 <!-- Positionen -->
 <div id="docpos">
-<table class="plist" style="font-size:10px;">
-<tbody><tr>
-<th style="width:101px;">Menge</th>
-<th style="width:101px;border-left:1px solid grey;">Einheit</th>
-<th style="width:900px;border-left:1px solid grey;">Beschreibung</th>
-<th style="width:60px;border-left:1px solid grey;">EP netto</th>
-<th>&nbsp;</th>
-</tr>
+	<table class="plist" style="font-size:10px;">
+	<tbody><tr>
+	<th style="width:101px;">Menge</th>
+	<th style="width:101px;border-left:1px solid grey;">Einheit</th>
+	<th style="width:900px;border-left:1px solid grey;">Beschreibung</th>
+	<th style="width:60px;border-left:1px solid grey;">EP netto</th>
+	<th>&nbsp;</th>
+	</tr>
 </tbody></table></div>
 
 <input type="button" class="button2" name="newpos" style="float:right; clear:both;margin-right:25px;" value="Position erstellen" onclick="insertPos()">
@@ -132,19 +130,19 @@ include '../../inc/connect.php';
 <div class="column3">
 </div>
 
+<!-- Kalkulation -->
 <div class="column3">
-	<!-- Kalkulation -->
-<div style="float:right;text-align:left;width:200px;margin-right:20px;border: #4B9F93 1px solid;border-bottom:2px solid #F39200;margin-bottom:10px;"><br>
-	<label>&nbsp;Summe Netto:</label><input type="text" id="netto" value="" readonly="" style="border:none;background-color:transparent;width:150px;text-align:right;" tabindex="32000"><br>
-	<label>&nbsp;MwSt 19,00%:</label><input type="text" id="steuer" value="" readonly="" style="border:none;background-color:transparent;width:150px;text-align:right;" tabindex="32000"><br>
-	<label style="font-weight:bold;">&nbsp;Gesamt Brutto:</label><input type="text" id="brutto" value="" readonly="" style="border:none;background-color:transparent;width:150px;text-align:right;font-weight:bold;" tabindex="32000">
-</div>
+	<div style="float:right;text-align:left;width:200px;margin-right:20px;border: #4B9F93 1px solid;border-bottom:2px solid #F39200;margin-bottom:10px;"><br>
+		<label>&nbsp;Summe Netto:</label><input type="text" name="netto" id="netto" value="" readonly="" style="border:none;background-color:transparent;width:150px;text-align:right;" tabindex="32000"><br>
+		<label>&nbsp;MwSt 19,00%:</label><input type="text" name="mwst" id="steuer" value="" readonly="" style="border:none;background-color:transparent;width:150px;text-align:right;" tabindex="32000"><br>
+		<label style="font-weight:bold;">&nbsp;Gesamt Brutto:</label><input type="text" name="brutto" id="brutto" value="" readonly="" style="border:none;background-color:transparent;width:150px;text-align:right;font-weight:bold;" tabindex="32000">
+	</div>
 
 <!-- Kalkulation Auswahl 
-<div style="display:inline-block;">
-	<input type="checkbox" value="1" name="sum" id="sum"><label for="sum" style="text-align:left">Gesamtsumme</label><br>
-	<input type="checkbox" value="1" name="mwst" id="mwst"><label for="mwst" style="text-align:left">MwSt &amp; Brutto</label><br>
-</div>
+	<div style="display:inline-block;">
+		<input type="checkbox" value="1" name="sum" id="sum"><label for="sum" style="text-align:left">Gesamtsumme</label><br>
+		<input type="checkbox" value="1" name="mwst" id="mwst"><label for="mwst" style="text-align:left">MwSt &amp; Brutto</label><br>
+	</div>
 -->
 </div>
 <br><br>
