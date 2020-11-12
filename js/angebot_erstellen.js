@@ -10,6 +10,7 @@ function insertPos() {
     pos += '<td valign=top style="width:100px;"><select name="einheit[]"><option value="Lfm.">Lfm.</option><option value="Pal.">Pal.</option><option value="pschl.">pschl.</option><option value="Pkg.">Pkg.</option><option value="Std.">Std.</option><option value="Stk.">Stk.</option> size=4 onKeyUp="calculate()" /></td>';
     pos += '<td valign=top><textarea style="width:900px;" rows=7 name=dsc[] onKeyUp="typeAhead(event, this)"></textarea></td>';
     pos += '<td valign=top style="width:100px;"><input type=text name="ep[]" value="" size=4 onKeyUp="calculate()" /></td>';
+    pos += '<td valign=top style="width:100px;"><input type=text name="posrab[]" value="0" size=4 onKeyUp="calculate()" /></td>';
     pos += '<td valign=top><input style="color:red;" type=button name="del[]" value=" X " onclick="deletePos(this);"/></td>';
     pos += '</tr></table>';
     obj = document.createElement("DIV");
@@ -27,18 +28,20 @@ function deletePos(obj) {
 function calculate() {
     a_anz = document.getElementsByName("anz[]");
     a_ep = document.getElementsByName("ep[]");
+    a_posrab = document.getElementsByName("posrab[]");
     sum = 0;
     for (f = 0; f < a_anz.length; f++) {
         menge = parseFloat(a_anz[f].value.replace(/,/, "."));
         preis = parseFloat(a_ep[f].value.replace(/,/, "."));
-        if (!isNaN(menge) && !isNaN(preis)) sum = sum + (menge * preis)
+	postenrabatt = parseFloat(a_posrab[f].value.replace(/,/, "."));
+        if (!isNaN(menge) && !isNaN(preis)) sum = sum + ((menge * preis) - (menge * postenrabatt))
     }
     mwst = parseFloat(steuer.replace(/,/, "."));
     st = sum * mwst / 100;
     total = sum + st;
-    O("netto").value = sum.toFixed(2).toString().replace(/\./, ",") + " €";
-    O("steuer").value = st.toFixed(2).toString().replace(/\./, ",") + " €";
-    O("brutto").value = total.toFixed(2).toString().replace(/\./, ",") + " €"
+    O("netto").value = sum.toFixed(2).toString().replace(/\./, ",") + " â‚¬";
+    O("steuer").value = st.toFixed(2).toString().replace(/\./, ",") + " â‚¬";
+    O("brutto").value = total.toFixed(2).toString().replace(/\./, ",") + " â‚¬"
 }
 var typeAheadDsp = false;
 var curAheadString = false;
@@ -77,7 +80,7 @@ function typeAhead(e, q) {
         typeAheadDsp.innerHTML = curAheadArray[curIndex].replace(/\r\n/ig, "<br />");
         if (q.type.toLowerCase() == "textarea") {
             typeAheadDsp.innerHTML = "<br />" + typeAheadDsp.innerHTML;
-            if (wert == "dsc") typeAheadDsp.innerHTML += " <i style='color:red;'>(" + curAnz[curIndex] + (curAnz[curIndex].replace(/[0-9,\. ]/ig, "") == "" ? "x" : "") + " zu " + curEp[curIndex] + "€" + (curAnz[curIndex].replace(/[0-9,\. ]/ig, "") != "" ? "/" + curAnz[curIndex].replace(/[0-9,\. ]/ig, "") : "") + ")</i>";
+            if (wert == "dsc") typeAheadDsp.innerHTML += " <i style='color:red;'>(" + curAnz[curIndex] + (curAnz[curIndex].replace(/[0-9,\. ]/ig, "") == "" ? "x" : "") + " zu " + curEp[curIndex] + "â‚¬" + (curAnz[curIndex].replace(/[0-9,\. ]/ig, "") != "" ? "/" + curAnz[curIndex].replace(/[0-9,\. ]/ig, "") : "") + ")</i>";
             q.style.height = (typeAheadDsp.offsetHeight + 30) + "px"
         }
         return false
@@ -96,7 +99,7 @@ function typeAhead(e, q) {
                 typeAheadDsp.style.width = q.offsetWidth + "px";
                 if (q.type.toLowerCase() == "textarea") {
                     typeAheadDsp.innerHTML = "<br />" + typeAheadDsp.innerHTML;
-                    if (wert == "dsc") typeAheadDsp.innerHTML += " <i style='color:red;'>(" + typeAheadData["anz"][f] + (typeAheadData["anz"][f].replace(/[0-9,\. ]/ig, "") == "" ? "x" : "") + " zu " + typeAheadData["ep"][f] + "€" + (typeAheadData["anz"][f].replace(/[0-9,\. ]/ig, "") != "" ? "/" + typeAheadData["anz"][f].replace(/[0-9,\. ]/ig, "") : "") + ")</i>";
+                    if (wert == "dsc") typeAheadDsp.innerHTML += " <i style='color:red;'>(" + typeAheadData["anz"][f] + (typeAheadData["anz"][f].replace(/[0-9,\. ]/ig, "") == "" ? "x" : "") + " zu " + typeAheadData["ep"][f] + "â‚¬" + (typeAheadData["anz"][f].replace(/[0-9,\. ]/ig, "") != "" ? "/" + typeAheadData["anz"][f].replace(/[0-9,\. ]/ig, "") : "") + ")</i>";
                     q.style.height = (typeAheadDsp.offsetHeight + 30) + "px"
                 }
                 curAheadString = check[f];
