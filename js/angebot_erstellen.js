@@ -43,9 +43,3 @@ function calculate() {
     O("steuer").value = st.toFixed(2).toString().replace(/\./, ",") + " â‚¬";
     O("brutto").value = total.toFixed(2).toString().replace(/\./, ",") + " â‚¬"
 }
-var typeAheadDsp = false;
-var curAheadString = false;
-var curAheadArray = Array();
-var curAnz = Array();
-var curEp = Array();
-var curIndex = 0;
