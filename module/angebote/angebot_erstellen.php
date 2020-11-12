@@ -41,14 +41,16 @@ include '../../inc/connect.php';
 	$pos1einheit = $_POST['einheit'][0];
 	$pos1dsc = $_POST['dsc'][0];
 	$pos1ep = $_POST['ep'][0];
+	$pos1rab = $_POST['ep'][0];
 	$pos2anz = $_POST['anz'][1];
 	$pos2einheit = $_POST['einheit'][1];
 	$pos2dsc = $_POST['dsc'][1];
 	$pos2ep = $_POST['ep'][1];
+	$pos2rab = $_POST['ep'][1];
 
     // 3. String für SQL-Anweisung erstellen
-	$insertString = "INSERT INTO angebote (kunde, anrede, datum, referenz, zahlungsbedingungen, netto, mwst, brutto, pos1anz, pos1einheit, pos1dsc, pos1ep, pos2anz, pos2einheit, pos2dsc, pos2ep)
-	VALUES ('$kunde', '$anrede', '$datum', '$referenz', '$zahlungsbedingungen', '$netto', '$mwst', '$brutto', '$pos1anz', '$pos1einheit', '$pos1dsc', '$pos1ep', '$pos2anz', '$pos2einheit', '$pos2dsc', '$pos2ep');";
+	$insertString = "INSERT INTO angebote (kunde, anrede, datum, referenz, zahlungsbedingungen, netto, mwst, brutto, pos1anz, pos1einheit, pos1dsc, pos1ep, pos1rab, pos2anz, pos2einheit, pos2dsc, pos2ep, pos2rab)
+	VALUES ('$kunde', '$anrede', '$datum', '$referenz', '$zahlungsbedingungen', '$netto', '$mwst', '$brutto', '$pos1anz', '$pos1einheit', '$pos1dsc', '$pos1ep', '$pos1rab,' '$pos2anz', '$pos2einheit', '$pos2dsc', '$pos2ep' '$pos2rab,');";
 
     // SQL-Anweisung durchfuehren
     $check = mysqli_query($connect, $insertString);
@@ -85,7 +87,6 @@ include '../../inc/connect.php';
 	$strasse = $dsatz["strasse"];
 	$plz = $dsatz["plz"];
 	$ort = $dsatz["ort"];
-
 }		
 
     // 5. Das Bearbeiten-Formular anzeigen
@@ -101,7 +102,7 @@ include '../../inc/connect.php';
 	</div>
 	<div class="column3">
 		<input type="date" name="datum" value="<?php echo date('Y-m-d'); ?>"/>
-		<input type="text" name="angebotid" placeholder="Angebotsnummer (wird automatisch vergeben)"/>
+		<input type="text" disabled name="angebotid" placeholder="Angebotsnummer (wird automatisch vergeben)"/>
 		<input type="text" name="referenz" placeholder="Referenz"/>
 	</div>
 
@@ -113,7 +114,8 @@ include '../../inc/connect.php';
 	<th style="width:101px;">Menge</th>
 	<th style="width:101px;border-left:1px solid grey;">Einheit</th>
 	<th style="width:900px;border-left:1px solid grey;">Beschreibung</th>
-	<th style="width:60px;border-left:1px solid grey;">EP netto</th>
+	<th style="width:101px;border-left:1px solid grey;">EP Netto</th>
+	<th style="width:101px;border-left:1px solid grey;">Pos. Rabatt</th>
 	<th>&nbsp;</th>
 	</tr>
 </tbody></table></div>
@@ -137,13 +139,6 @@ include '../../inc/connect.php';
 		<label>&nbsp;MwSt 19,00%:</label><input type="text" name="mwst" id="steuer" value="" readonly="" style="border:none;background-color:transparent;width:150px;text-align:right;" tabindex="32000"><br>
 		<label style="font-weight:bold;">&nbsp;Gesamt Brutto:</label><input type="text" name="brutto" id="brutto" value="" readonly="" style="border:none;background-color:transparent;width:150px;text-align:right;font-weight:bold;" tabindex="32000">
 	</div>
-
-<!-- Kalkulation Auswahl 
-	<div style="display:inline-block;">
-		<input type="checkbox" value="1" name="sum" id="sum"><label for="sum" style="text-align:left">Gesamtsumme</label><br>
-		<input type="checkbox" value="1" name="mwst" id="mwst"><label for="mwst" style="text-align:left">MwSt &amp; Brutto</label><br>
-	</div>
--->
 </div>
 <br><br>
 
