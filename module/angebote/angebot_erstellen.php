@@ -41,16 +41,16 @@ include '../../inc/connect.php';
 	$pos1einheit = $_POST['einheit'][0];
 	$pos1dsc = $_POST['dsc'][0];
 	$pos1ep = $_POST['ep'][0];
-	$pos1rab = $_POST['ep'][0];
+	$pos1rab = $_POST['posrab'][0];
 	$pos2anz = $_POST['anz'][1];
 	$pos2einheit = $_POST['einheit'][1];
 	$pos2dsc = $_POST['dsc'][1];
 	$pos2ep = $_POST['ep'][1];
-	$pos2rab = $_POST['ep'][1];
+	$pos2rab = $_POST['posrab'][1];
 
     // 3. String für SQL-Anweisung erstellen
 	$insertString = "INSERT INTO angebote (kunde, anrede, datum, referenz, zahlungsbedingungen, netto, mwst, brutto, pos1anz, pos1einheit, pos1dsc, pos1ep, pos1rab, pos2anz, pos2einheit, pos2dsc, pos2ep, pos2rab)
-	VALUES ('$kunde', '$anrede', '$datum', '$referenz', '$zahlungsbedingungen', '$netto', '$mwst', '$brutto', '$pos1anz', '$pos1einheit', '$pos1dsc', '$pos1ep', '$pos1rab,' '$pos2anz', '$pos2einheit', '$pos2dsc', '$pos2ep' '$pos2rab,');";
+	VALUES ('$kunde', '$anrede', '$datum', '$referenz', '$zahlungsbedingungen', '$netto', '$mwst', '$brutto', '$pos1anz', '$pos1einheit', '$pos1dsc', '$pos1ep', '$pos1rab', '$pos2anz', '$pos2einheit', '$pos2dsc', '$pos2ep', '$pos2rab');";
 
     // SQL-Anweisung durchfuehren
     $check = mysqli_query($connect, $insertString);
