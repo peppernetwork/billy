@@ -22,7 +22,7 @@ function insertPos() {
 }
 
 function Rabatt() {
-    return '<div class="column">Gesamtrabatt &euro;<input type=text name="geserab[]" value="0" size=4 onKeyUp="calculate()"></div><div class="column">Gesamtrabatt %<input type=text name="gesprab[]" value="1" size=4 onKeyUp="calculate()"></div>';
+    return '<div class="column">Gesamtrabatt &euro;<input type=text name="geserab" value="0" size=4 onKeyUp="calculate()"></div><div class="column">Gesamtrabatt %<input type=text name="gesprab" value="1" size=4 onKeyUp="calculate()"></div>';
 }
 
 function deletePos(obj) {
@@ -35,8 +35,8 @@ function calculate() {
     a_ep = document.getElementsByName("ep[]");
     a_poserab = document.getElementsByName("poserab[]");
     a_posprab = document.getElementsByName("posprab[]");
-    b_geserab = document.getElementsByName("geserab[]");
-    b_gesprab = document.getElementsByName("gesprab[]");
+    b_geserab = document.getElementsByName("geserab");
+    b_gesprab = document.getElementsByName("gesprab");
     sum = 0;
     for (f = 0; f < a_anz.length; f++) {
         menge = parseFloat(a_anz[f].value.replace(/,/, "."));
@@ -49,10 +49,12 @@ function calculate() {
     gesamtrabattprozent = parseFloat(b_gesprab[0].value.replace(/,/, "."));
     mwst = parseFloat(steuer.replace(/,/, "."));
     st = sum * mwst / 100;
-    gr = sum * gesamtrabattprozent - gesamtrabatteuro;
+    gr = (sum * gesamtrabattprozent - gesamtrabatteuro) - sum;
+    nettoabzug = sum + gr;
     total = sum + st;
-    O("gr").value = gr.toFixed(2).toString().replace(/\./, ",") + " â‚¬";
     O("netto").value = sum.toFixed(2).toString().replace(/\./, ",") + " â‚¬";
+    O("gr").value = gr.toFixed(2).toString().replace(/\./, ",") + " â‚¬";
+    O("nettoabzug").value = nettoabzug.toFixed(2).toString().replace(/\./, ",") + " â‚¬";
     O("steuer").value = st.toFixed(2).toString().replace(/\./, ",") + " â‚¬";
     O("brutto").value = total.toFixed(2).toString().replace(/\./, ",") + " â‚¬"
 }
