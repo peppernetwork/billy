@@ -16,7 +16,7 @@ textarea {
 }	
 </style>
 
-<script src="test.js"></script>
+<script src="../../js/angebot_erstellen.js"></script>
 
 <section>
 
