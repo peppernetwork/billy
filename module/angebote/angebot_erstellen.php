@@ -16,7 +16,7 @@ textarea {
 }	
 </style>
 
-<script src="../../js/angebot_erstellen.js"></script>
+<script src="test.js"></script>
 
 <section>
 
@@ -106,16 +106,17 @@ include '../../inc/connect.php';
 		<input type="text" name="referenz" placeholder="Referenz"/>
 	</div>
 
-<!-- Hier beginnt die Angebotsbearbeitung für Positionen -->
+<!-- Hier beginnt die Angebotsbearbeitung fŸr Positionen -->
 <!-- Positionen -->
 <div id="docpos">
 	<table class="plist" style="font-size:10px;">
 	<tbody><tr>
-	<th style="width:101px;">Menge</th>
-	<th style="width:101px;border-left:1px solid grey;">Einheit</th>
+	<th style="width:100px;">Menge</th>
+	<th style="width:100px;border-left:1px solid grey;">Einheit</th>
 	<th style="width:900px;border-left:1px solid grey;">Beschreibung</th>
-	<th style="width:101px;border-left:1px solid grey;">EP Netto</th>
-	<th style="width:101px;border-left:1px solid grey;">Pos. Rabatt</th>
+	<th style="width:100px;border-left:1px solid grey;">EP Netto</th>
+	<th style="width:100px;border-left:1px solid grey;">Pos. Rabatt &euro;</th>
+	<th style="width:100px;border-left:1px solid grey;">Pos. Rabatt %</th>
 	<th>&nbsp;</th>
 	</tr>
 </tbody></table></div>
@@ -130,11 +131,21 @@ include '../../inc/connect.php';
 </div>
 
 <div class="column3">
+  <select name="gesamtrabatt" id="gesamtrabatt">
+    <option value="volvo">Rabatt</option>
+    <option value="saab">Nachlass</option>
+  </select>
+
+<div id="rabatt"></div>
+<script> document.getElementById("rabatt").innerHTML = Rabatt(); </script>
+
+</div>
 </div>
 
 <!-- Kalkulation -->
 <div class="column3">
 	<div style="float:right;text-align:left;width:200px;margin-right:20px;border: #4B9F93 1px solid;border-bottom:2px solid #F39200;margin-bottom:10px;"><br>
+		<label>&nbsp;Rabatt:</label><input type="text" name="gr" id="gr" value="" readonly="" style="border:none;background-color:transparent;width:150px;text-align:right;" tabindex="32000"><br>
 		<label>&nbsp;Summe Netto:</label><input type="text" name="netto" id="netto" value="" readonly="" style="border:none;background-color:transparent;width:150px;text-align:right;" tabindex="32000"><br>
 		<label>&nbsp;MwSt 19,00%:</label><input type="text" name="mwst" id="steuer" value="" readonly="" style="border:none;background-color:transparent;width:150px;text-align:right;" tabindex="32000"><br>
 		<label style="font-weight:bold;">&nbsp;Gesamt Brutto:</label><input type="text" name="brutto" id="brutto" value="" readonly="" style="border:none;background-color:transparent;width:150px;text-align:right;font-weight:bold;" tabindex="32000">
