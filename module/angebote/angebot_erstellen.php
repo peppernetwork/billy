@@ -128,6 +128,7 @@ include '../../inc/connect.php';
 <!-- Zahlungsbedingungen -->
 <div class="column3">
 	<textarea name="zahlungsbedingungen" id="zahlungsbedingungen" rows="10" cols="30" placeholder="Zahlungsbedingungen"></textarea>
+	<input class="button" type="submit" name="angebot-erstellen" value="Angebot erstellen">
 </div>
 
 <div class="column3">
@@ -144,16 +145,16 @@ include '../../inc/connect.php';
 
 <!-- Kalkulation -->
 <div class="column3">
-	<div style="float:right;text-align:left;width:200px;margin-right:20px;border: #4B9F93 1px solid;border-bottom:2px solid #F39200;margin-bottom:10px;"><br>
-		<label>&nbsp;Rabatt:</label><input type="text" name="gr" id="gr" value="" readonly="" style="border:none;background-color:transparent;width:150px;text-align:right;" tabindex="32000"><br>
-		<label>&nbsp;Summe Netto:</label><input type="text" name="netto" id="netto" value="" readonly="" style="border:none;background-color:transparent;width:150px;text-align:right;" tabindex="32000"><br>
-		<label>&nbsp;MwSt 19,00%:</label><input type="text" name="mwst" id="steuer" value="" readonly="" style="border:none;background-color:transparent;width:150px;text-align:right;" tabindex="32000"><br>
-		<label style="font-weight:bold;">&nbsp;Gesamt Brutto:</label><input type="text" name="brutto" id="brutto" value="" readonly="" style="border:none;background-color:transparent;width:150px;text-align:right;font-weight:bold;" tabindex="32000">
+	<div style="width:100%;border: #4B9F93 1px solid;border-bottom:2px solid #F39200;"><br>
+		<label>&nbsp;Summe Netto:</label><input type="text" name="netto" id="netto" value="" readonly="" style="border:none;background-color:transparent;width:15%;text-align:right;" tabindex="32000"><br>
+		<label>&nbsp;Rabatt / Nachlass:</label><input type="text" name="gr" id="gr" value="" readonly="" style="border:none;background-color:transparent;width:15%;text-align:right;" tabindex="32000"><br>
+		<label>&nbsp;Summe Netto nach Abzug:</label><input type="text" name="nettoabzug" id="nettoabzug" value="" readonly="" style="border:none;background-color:transparent;width:15%;text-align:right;" tabindex="32000"><br>
+		<label>&nbsp;MwSt 19,00%:</label><input type="text" name="mwst" id="steuer" value="" readonly="" style="border:none;background-color:transparent;width:15%;text-align:right;" tabindex="32000"><br>
+		<label style="font-weight:bold;">&nbsp;Gesamt Brutto:</label><input type="text" name="brutto" id="brutto" value="" readonly="" style="border:none;background-color:transparent;width:15%;text-align:right;font-weight:bold;" tabindex="32000">
 	</div>
 </div>
-<br><br>
 
-<input class="button" type="submit" name="angebot-erstellen" value="Angebot erstellen">
+
 </form>
 
 </section>
