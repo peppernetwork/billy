@@ -1,4 +1,4 @@
-var steuer = "19,00";
+var steuer = '19,00';
 
 function O(id) {
     return document.getElementById(id)
@@ -8,7 +8,7 @@ function insertPos() {
     pos = '<table><tr>';
     pos += '<td valign=top style="width:100px;"><input type=text name="anz[]" value="1" size=4 onKeyUp="calculate()" /></td>';
     pos += '<td valign=top style="width:100px;"><select name="einheit[]"><option value="Lfm.">Lfm.</option><option value="Pal.">Pal.</option><option value="pschl.">pschl.</option><option value="Pkg.">Pkg.</option><option value="Std.">Std.</option><option value="Stk.">Stk.</option> size=4 onKeyUp="calculate()" /></td>';
-    pos += '<td valign=top><textarea style="width:900px;" rows=7 name=dsc[] onKeyUp="typeAhead(event, this)"></textarea></td>';
+    pos += '<td valign=top><textarea style="width:900px;" rows=7 name=dsc[] id=beschreibung[] onKeyUp="typeAhead(event, this)"></textarea></td>';
     pos += '<td valign=top style="width:100px;"><input type=text name="ep[]" value="" size=4 onKeyUp="calculate()" /></td>';
     pos += '<td valign=top style="width:100px;"><input type=text name="poserab[]" value="0" size=4 onKeyUp="calculate()" /></td>';
     pos += '<td valign=top style="width:100px;"><input type=text name="posprab[]" value="1" size=4 onKeyUp="calculate()" /></td>';
@@ -22,7 +22,7 @@ function insertPos() {
 }
 
 function Rabatt() {
-    return '<div class="column">Gesamtrabatt &euro;<input type=text name="geserab" value="0" size=4 onKeyUp="calculate()"></div><div class="column">Gesamtrabatt %<input type=text name="gesprab" value="1" size=4 onKeyUp="calculate()"></div>';
+    return '<div class="column1">Gesamtrabatt &euro;<input type=text name="geserab" value="0" size=4 onKeyUp="calculate()"></div><div class="column1">Gesamtrabatt %<input type=text name="gesprab" value="1" size=4 onKeyUp="calculate()"></div>';
 }
 
 function deletePos(obj) {
