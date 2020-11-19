@@ -49,8 +49,17 @@
       <i class="fa fa-caret-down"></i>
     </button>
     <div class="dropdown-content">
-      <a href="../../zahlung_eingeben.php">Zahlung eingeben</a>
-      <a href="../../zahlungen_anzeigen.php">Zahlungen anzeigen</a>
+      <a href="../../module/zahlung_eingeben.php">Zahlung eingeben</a>
+      <a href="../../module/zahlungen_anzeigen.php">Zahlungen anzeigen</a>
+    </div>
+  </div>
+  <div class="dropdown">
+    <button class="dropbtn">Artikel
+      <i class="fa fa-caret-down"></i>
+    </button>
+    <div class="dropdown-content">
+      <a href="../../module/artikel/artikel-hinzufuegen.php">Artikel anlegen</a>
+      <a href="../../module/artikel/artikel-anzeigen.php">Artikel anzeigen</a>
     </div>
   </div>
   <div class="dropdown">
@@ -58,6 +67,7 @@
       <i class="fa fa-caret-down"></i>
     </button>
     <div class="dropdown-content">
+      <a href="../../systemsettings.php?auswahl=1">Systemeinstellungen</a>
       <a href="../../reset-password.php">Passwort &auml;ndern</a>
       <a href="../../logout.php">Abmelden</a>
     </div>

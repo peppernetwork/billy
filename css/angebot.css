@@ -2,13 +2,36 @@
   box-sizing: border-box;
 }
 
-/* Create two equal columns that floats next to each other */
-.column {
+.column1 {
   float: left;
   width: 50%;
   padding: 10px;
-  height: 300px; /* Should be removed. Only for demonstration */
 }
+
+.column30 {
+  float: left;
+  width: 30%;
+  padding: 10px;
+}
+
+.column50 {
+  float: left;
+  width: 50%;
+  padding: 10px;
+}
+
+.column70 {
+  float: left;
+  width: 70%;
+  padding: 10px;
+}
+
+.column100 {
+  float: left;
+  width: 100%;
+  padding: 10px;
+}
+
 
 /* Clear floats after the columns */
 .row:after {

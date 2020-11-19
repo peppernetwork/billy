@@ -130,7 +130,8 @@ section {
 }
 
 .wrapper350 {
-	width: 350px; padding: 20px;
+	width: 350px;
+	padding: 20px;
 }
 
 .2-column {
@@ -193,7 +194,10 @@ input[type=submit]:hover {
   box-sizing: border-box;
 }
 
-/* Create two equal columns that floats next to each other */
+  /***************/
+ /*** Columns ***/
+/***************/
+
 .column {
   float: left;
   width: 50%;
@@ -201,7 +205,6 @@ input[type=submit]:hover {
   height: 300px; /* Should be removed. Only for demonstration */
 }
 
-/* Create three equal columns that floats next to each other */
 .column3 {
   float: left;
   width: 33.33%;
@@ -307,4 +310,33 @@ float: left;
 .input-submit {
     width: 17%;
 float: left;
+}
+
+  /************************/
+ /*** Angebot Position ***/
+/************************/
+
+.poscolumn1 {
+  float: left;
+  width: 8%;
+}
+.poscolumn2 {
+  float: left;
+  width: 8%;
+}
+.poscolumn3 {
+  float: left;
+  width: 60%;
+}
+.poscolumn4 {
+  float: left;
+  width: 8%;
+}
+.poscolumn5 {
+  float: left;
+  width: 8%;
+}
+.poscolumn6 {
+  float: left;
+  width: 8%;
 }

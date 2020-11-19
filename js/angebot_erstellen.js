@@ -52,9 +52,9 @@ function calculate() {
     gr = (sum * gesamtrabattprozent - gesamtrabatteuro) - sum;
     nettoabzug = sum + gr;
     total = sum + st;
-    O("netto").value = sum.toFixed(2).toString().replace(/\./, ",") + " â‚¬";
-    O("gr").value = gr.toFixed(2).toString().replace(/\./, ",") + " â‚¬";
-    O("nettoabzug").value = nettoabzug.toFixed(2).toString().replace(/\./, ",") + " â‚¬";
-    O("steuer").value = st.toFixed(2).toString().replace(/\./, ",") + " â‚¬";
-    O("brutto").value = total.toFixed(2).toString().replace(/\./, ",") + " â‚¬"
+    O("netto").value = sum.toFixed(2).toString().replace(/\./, ",") + " €";
+    O("gr").value = gr.toFixed(2).toString().replace(/\./, ",") + " €";
+    O("nettoabzug").value = nettoabzug.toFixed(2).toString().replace(/\./, ",") + " €";
+    O("steuer").value = st.toFixed(2).toString().replace(/\./, ",") + " €";
+    O("brutto").value = total.toFixed(2).toString().replace(/\./, ",") + " €"
 }

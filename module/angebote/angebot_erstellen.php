@@ -50,7 +50,7 @@ include '../../inc/connect.php';
 	$pos2ep = $_POST['ep'][1];
 	$pos2rab = $_POST['posrab'][1];
 
-    // 3. String fÃ¼r SQL-Anweisung erstellen
+    // 3. String für SQL-Anweisung erstellen
 	$insertString = "INSERT INTO angebote (kunde, anrede, datum, referenz, zahlungsbedingungen, netto, mwst, brutto, pos1anz, pos1einheit, pos1dsc, pos1ep, pos1rab, pos2anz, pos2einheit, pos2dsc, pos2ep, pos2rab)
 	VALUES ('$kunde', '$anrede', '$datum', '$referenz', '$zahlungsbedingungen', '$netto', '$mwst', '$brutto', '$pos1anz', '$pos1einheit', '$pos1dsc', '$pos1ep', '$pos1rab', '$pos2anz', '$pos2einheit', '$pos2dsc', '$pos2ep', '$pos2rab');";
 
@@ -67,7 +67,7 @@ include '../../inc/connect.php';
     // 1. Verbindung zur Datenbank herstellen
 	include '../../inc/connect.php';
 
-    // 2. Prüfe Radio-Button-Auswahl
+    // 2. Pr�fe Radio-Button-Auswahl
 	if(isset($_GET["auswahl"])){
 
     // 3. Datenbankabfrage starten
@@ -120,7 +120,7 @@ include '../../inc/connect.php';
 		<input type="text" name="referenz" placeholder="Referenz"/>
 	</div>
 
-<!-- Hier beginnt die Angebotsbearbeitung fÂŸr Positionen -->
+<!-- Hier beginnt die Angebotsbearbeitung fr Positionen -->
 <!-- Positionen -->
 <div id="docpos">
 	<table class="plist" style="font-size:10px;">
