@@ -39,3 +39,7 @@
   display: table;
   clear: both;
 }
+
+#docpos>tr:first-child .del {
+  display: none;
+}
