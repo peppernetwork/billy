@@ -12,16 +12,16 @@ if(isset($_POST["query"]))
 {
  $search = str_replace(",", "|", $_POST["query"]);
  $query = "
- SELECT * FROM artikel 
- WHERE artikelid REGEXP '".$search."' 
- OR artikelname REGEXP '".$search."' 
- OR artikelbeschreibung REGEXP '".$search."' 
+ SELECT * FROM bausteine
+ WHERE bausteinid REGEXP '".$search."' 
+ OR bausteinname REGEXP '".$search."' 
+ OR bausteinbeschreibung REGEXP '".$search."' 
  ";
 }
 else
 {
  $query = "
- SELECT * FROM artikel ORDER BY artikelid
+ SELECT * FROM bausteine ORDER BY bausteinid
  ";
 }
 

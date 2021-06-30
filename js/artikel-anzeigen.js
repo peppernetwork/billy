@@ -20,6 +20,7 @@ $(document).ready(function(){
       html += '<tr>';
       html += '<td> <center><form method="get"><input class="ButtonSelect" type="submit" name="auswahl" formaction="artikel-bearbeiten.php?var=value" value="'+data[count].artikelid+'"></form></center> </td>';
       html += '<td>'+data[count].artikelname+'</td>';
+      html += '<td>'+data[count].artikelbeschreibung+'</td>';
      }
     }
     else

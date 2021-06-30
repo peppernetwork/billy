@@ -6,7 +6,6 @@ include '../../inc/nav.php';
      <link rel="stylesheet" href="../../css/angebot.css" type="text/css">
 
 <style>
-
 textarea {
   width: 100%;
   padding: 12px 20px;
@@ -31,7 +30,6 @@ textarea {
 include '../../inc/connect.php';
 
     //Nutzereingabe aus Angebotposition in Variablen speichern
-	$pos = $_POST["pos"];
 	$kunde = $_POST["kunde"];
 	$anrede = $_POST["anrede"];
 	$datum = $_POST["datum"];
@@ -51,9 +49,9 @@ include '../../inc/connect.php';
 	$pos2ep = $_POST['ep'][1];
 	$pos2rab = $_POST['posrab'][1];
 
-    // 3. String fÃ¼r SQL-Anweisung erstellen
-	$insertString = "INSERT INTO angebote (pos, kunde, anrede, datum, referenz, zahlungsbedingungen, netto, mwst, brutto, pos1anz, pos1einheit, pos1dsc, pos1ep, pos1rab, pos2anz, pos2einheit, pos2dsc, pos2ep, pos2rab)
-	VALUES ('$pos', '$kunde', '$anrede', '$datum', '$referenz', '$zahlungsbedingungen', '$netto', '$mwst', '$brutto', '$pos1anz', '$pos1einheit', '$pos1dsc', '$pos1ep', '$pos1rab', '$pos2anz', '$pos2einheit', '$pos2dsc', '$pos2ep', '$pos2rab');";
+    // 3. String für SQL-Anweisung erstellen
+	$insertString = "INSERT INTO angebote (kunde, anrede, datum, referenz, zahlungsbedingungen, netto, mwst, brutto, pos1anz, pos1einheit, pos1dsc, pos1ep, pos1rab, pos2anz, pos2einheit, pos2dsc, pos2ep, pos2rab)
+	VALUES ('$kunde', '$anrede', '$datum', '$referenz', '$zahlungsbedingungen', '$netto', '$mwst', '$brutto', '$pos1anz', '$pos1einheit', '$pos1dsc', '$pos1ep', '$pos1rab', '$pos2anz', '$pos2einheit', '$pos2dsc', '$pos2ep', '$pos2rab');";
 
     // SQL-Anweisung durchfuehren
     $check = mysqli_query($connect, $insertString);
@@ -62,7 +60,7 @@ include '../../inc/connect.php';
         echo '<span style="color: green;" /><strong>Angebot erfolgreich erstellt</strong></span>';
     }}
 
-// Hier wird der Kunde ausgegeben, welcher zuvor ausgewählt wurde.
+// Hier wird der Kunde ausgegeben, welcher zuvor ausgewÃ¤hlt wurde.
 
   // Kundenauswahl Verarbeitung
     // 1. Verbindung zur Datenbank herstellen
@@ -111,9 +109,6 @@ include '../../inc/connect.php';
 	$abfrageartikelsuche = "select artikelname from artikel";
 	$resultartikelsuche = mysqli_query($connect, $abfrageartikelsuche) or die("Error " . mysqli_error($connect));
 
-// Zähler für Positionsnummer
-	$posno = 2;
-
 ?>
 
 <!-- Artikelsuche -->
@@ -134,13 +129,12 @@ include '../../inc/connect.php';
   <input type="text" name="referenz" placeholder="Referenz" />
 </div>
 
-<!-- Hier beginnt die Angebotsbearbeitung für Positionen -->
+<!-- Hier beginnt die Angebotsbearbeitung fÃ¼r Positionen -->
 <!-- Positionen -->
 <div>
   <table class="plist" style="font-size:10px;">
     <thead>
       <tr>
-	    <th style="width:100px;">Pos.</th>
         <th style="width:100px;">Menge</th>
         <th style="width:100px;border-left:1px solid grey;">Einheit</th>
         <th style="width:900px;border-left:1px solid grey;">Beschreibung</th>
@@ -152,7 +146,6 @@ include '../../inc/connect.php';
     </thead>
     <tbody id="docpos">
       <tr>
-	    <td valign=top style="width:100px;"><input type=text class="pos" name="pos[]" value="1" size="4" /></td>
         <td valign=top style="width:100px;"><input type=text class="anz" name="anz[]" value="1" size="4" /></td>
         <td valign=top style="width:100px;">
           <select name="einheit[]">
@@ -206,7 +199,7 @@ include '../../inc/connect.php';
     <label>&nbsp;Summe Netto:</label><input type="text" name="netto" id="netto" value="" readonly="" style="border:none;background-color:transparent;width:60%;text-align:left;" tabindex="32000"><br>
     <label>&nbsp;Rabatt / Nachlass:</label><input type="text" name="gr" id="gr" value="" readonly="" style="border:none;background-color:transparent;width:60%;text-align:left;" tabindex="32000"><br>
     <label>&nbsp;Summe Netto nach Abzug:</label><input type="text" name="nettoabzug" id="nettoabzug" value="" readonly="" style="border:none;background-color:transparent;width:60%;text-align:left;" tabindex="32000"><br>
-    <label>&nbsp;MwSt 19,00%:</label><input type="text" name="mwst" id="steuer" value="" readonly="" style="border:none;background-color:transparent;width:60%;text-align:left;" tabindex="32000"><br>
+    <label>&nbsp;MwSt <?php echo $steuersatz; ?>%:</label><input type="text" name="mwst" id="steuer" value="" readonly="" style="border:none;background-color:transparent;width:60%;text-align:left;" tabindex="32000"><br>
     <label style="font-weight:bold;">&nbsp;Gesamt Brutto:</label><input type="text" name="brutto" id="brutto" value="" readonly="" style="border:none;background-color:transparent;width:60%;text-align:left;font-weight:bold;" tabindex="32000">
   </div>
 </div>

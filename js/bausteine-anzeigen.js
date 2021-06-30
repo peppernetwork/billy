@@ -5,7 +5,7 @@ $(document).ready(function(){
  function load_data(query)
  {
   $.ajax({
-   url:"../../inc/fetchangebote.php",
+   url:"../../inc/fetchbausteine.php",
    method:"POST",
    data:{query:query},
    dataType:"json",
@@ -18,9 +18,9 @@ $(document).ready(function(){
      for(var count = 0; count < data.length; count++)
      {
       html += '<tr>';
-      html += '<td> <center><form method="get"><input class="ButtonSelect" type="submit" name="auswahl" formaction="angebot_bearbeiten.php?var=value" value="'+data[count].angebotid+'"></form></center> </td>';
-      html += '<td>'+data[count].kunde+'</td>';
-      html += '<td>'+data[count].referenz+'</td></tr>';
+      html += '<td> <center><form method="get"><input class="ButtonSelect" type="submit" name="auswahl" formaction="baustein-bearbeiten.php?var=value" value="'+data[count].bausteinid+'"></form></center> </td>';
+      html += '<td>'+data[count].bausteinname+'</td>';
+      html += '<td>'+data[count].bausteinbeschreibung+'</td>';
      }
     }
     else

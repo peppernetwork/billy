@@ -9,7 +9,7 @@ const toAmount = num => num.toLocaleString('de-DE', {
   currency: 'EUR'
 })
 
-const steuer = '19,00';
+const steuer = '19';
 const mwst = toNum(steuer);
 let container, nettoField, grField, nettoabzugField, steuerField, bruttoField, geserabField, gesprabField;
 
@@ -47,10 +47,10 @@ container.addEventListener("click", function(e) {
   document.querySelector(".button2").addEventListener("click", insertPos);
 })
 
-
 function insertPos() {
   const newTr = container.querySelector("tr").cloneNode(true);
   [...newTr.querySelectorAll("input, textarea")].forEach(inp => inp.value="");
+  newTr.querySelector(".pos").value=('<?php echo $posno++ ;?>');
   newTr.querySelector(".anz").value=1;
   newTr.querySelector(".poserab").value=0;
   newTr.querySelector(".posprab").value=1;
@@ -58,8 +58,6 @@ function insertPos() {
   container.appendChild(newTr);
   newTr.querySelector(".anz").focus();
 }
-
-
 
 function calculate() {
   const gesamtrabatteuro = toNum(document.querySelector("[name=geserab]").value);

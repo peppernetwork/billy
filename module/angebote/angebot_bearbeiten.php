@@ -22,16 +22,15 @@ textarea {
 
 <section>
 
-<h1>Angebot erstellen</h1>
+<h1>Angebot bearbeiten</h1>
 
 <?php
-    if(isset($_POST["angebot-erstellen"])){
+    if(isset($_GET["angebot-bearbeiten"])){
 
 //Datenbank-Verbindung herstellen
 include '../../inc/connect.php';
 
     //Nutzereingabe aus Angebotposition in Variablen speichern
-	$pos = $_POST["pos"];
 	$kunde = $_POST["kunde"];
 	$anrede = $_POST["anrede"];
 	$datum = $_POST["datum"];
@@ -51,9 +50,9 @@ include '../../inc/connect.php';
 	$pos2ep = $_POST['ep'][1];
 	$pos2rab = $_POST['posrab'][1];
 
-    // 3. String f√ºr SQL-Anweisung erstellen
-	$insertString = "INSERT INTO angebote (pos, kunde, anrede, datum, referenz, zahlungsbedingungen, netto, mwst, brutto, pos1anz, pos1einheit, pos1dsc, pos1ep, pos1rab, pos2anz, pos2einheit, pos2dsc, pos2ep, pos2rab)
-	VALUES ('$pos', '$kunde', '$anrede', '$datum', '$referenz', '$zahlungsbedingungen', '$netto', '$mwst', '$brutto', '$pos1anz', '$pos1einheit', '$pos1dsc', '$pos1ep', '$pos1rab', '$pos2anz', '$pos2einheit', '$pos2dsc', '$pos2ep', '$pos2rab');";
+    // 3. String f¸r SQL-Anweisung erstellen
+	$insertString = "INSERT INTO angebote (kunde, anrede, datum, referenz, zahlungsbedingungen, netto, mwst, brutto, pos1anz, pos1einheit, pos1dsc, pos1ep, pos1rab, pos2anz, pos2einheit, pos2dsc, pos2ep, pos2rab)
+	VALUES ('$kunde', '$anrede', '$datum', '$referenz', '$zahlungsbedingungen', '$netto', '$mwst', '$brutto', '$pos1anz', '$pos1einheit', '$pos1dsc', '$pos1ep', '$pos1rab', '$pos2anz', '$pos2einheit', '$pos2dsc', '$pos2ep', '$pos2rab');";
 
     // SQL-Anweisung durchfuehren
     $check = mysqli_query($connect, $insertString);
@@ -62,7 +61,7 @@ include '../../inc/connect.php';
         echo '<span style="color: green;" /><strong>Angebot erfolgreich erstellt</strong></span>';
     }}
 
-// Hier wird der Kunde ausgegeben, welcher zuvor ausgew‰hlt wurde.
+// Hier wird der Kunde ausgegeben, welcher zuvor ausgew√§hlt wurde.
 
   // Kundenauswahl Verarbeitung
     // 1. Verbindung zur Datenbank herstellen
@@ -73,25 +72,37 @@ include '../../inc/connect.php';
 
     // 3. Datenbankabfrage starten
 	$id = $_GET["auswahl"];
-	$abfrage = "SELECT * FROM kunden WHERE id = $id";
+	$abfrage = "SELECT * FROM angebote WHERE angebotid = $id";
 	$result = mysqli_query($connect, $abfrage);
 
     // 4. Datensatz in Variablen speichern
 	$dsatz = mysqli_fetch_assoc($result);
-	$firma = $dsatz["firma"];
+	$angebotnr = $dsatz["angebotid"];
+	$kunde = $dsatz["kunde"];
 	$anrede = $dsatz["anrede"];
-	$vorname = $dsatz["vorname"];
-	$nachname = $dsatz["nachname"];
-	$strasse = $dsatz["strasse"];
-	$plz = $dsatz["plz"];
-	$ort = $dsatz["ort"];
+	$datum = $dsatz["datum"];
+	$referenz = $dsatz["referenz"];
+	$zahlungsbedingungen = $dsatz["zahlungsbedingungen"];
+	$netto = $dsatz["netto"];
+	$mwst = $dsatz["mwst"];
+	$brutto = $dsatz["brutto"];
+	$pos1anz = $dsatz["pos1anz"];
+	$pos1einheit = $dsatz["pos1einheit"];
+	$pos1dsc = $dsatz["pos1dsc"];
+	$pos1ep = $dsatz["pos1ep"];
+	$pos1rab = $dsatz["pos1rab"];	
+	$pos2anz = $dsatz["pos2anz"];
+	$pos2einheit = $dsatz["pos2einheit"];
+	$pos2dsc = $dsatz["pos2dsc"];
+	$pos2ep = $dsatz["pos2ep"];
+	$pos2rab = $dsatz["pos2ab"];
 }		
 
     // 5. Das Bearbeiten-Formular anzeigen
 	echo "<form action='angebot_erstellen.php' method='post'>";
 	echo "<div class='column3'>";
 	echo "<input name='id' type='hidden' value='$id'>";
-	echo "<textarea name='kunde' rows='10' cols='30'>$firma\n$vorname $nachname\n$strasse\n$plz $ort</textarea>";
+	echo "<textarea name='kunde' rows='10' cols='30'>$kunde</textarea>";
 	echo "</div>";
 
 // Hier werden Systemeinstellungen ausgegeben
@@ -110,10 +121,6 @@ include '../../inc/connect.php';
     // 1. Artikeldaten Abfrage
 	$abfrageartikelsuche = "select artikelname from artikel";
 	$resultartikelsuche = mysqli_query($connect, $abfrageartikelsuche) or die("Error " . mysqli_error($connect));
-
-// Z‰hler f¸r Positionsnummer
-	$posno = 2;
-
 ?>
 
 <!-- Artikelsuche -->
@@ -126,21 +133,22 @@ include '../../inc/connect.php';
 
 <!-- Obere Eingabemaske -->
 <div class="column3">
-  <textarea name="anrede" id="anrede" rows="10" cols="30" placeholder="Anrede" /></textarea>
+ <?php echo "<textarea name='anrede' id='anrede' rows='10' cols='30' placeholder='Anrede'/>$anrede</textarea>"; ?>
 </div>
 <div class="column3">
-  <input type="date" name="datum" value="<?php echo date('Y-m-d'); ?>" />
-  <input type="text" disabled name="angebotid" placeholder="Angebotsnummer (wird automatisch vergeben)" />
-  <input type="text" name="referenz" placeholder="Referenz" />
+  <?php
+    echo "<input type='date' name='datum' value='$datum' />";
+    echo "<input type='text' disabled name='angebotid' placeholder='Angebotsnummer (wird automatisch vergeben)' value='Angebot Nr. $angebotnr' />";
+    echo "<input type='text' name='referenz' placeholder='Referenz' value='$referenz' />";
+  ?>
 </div>
 
-<!-- Hier beginnt die Angebotsbearbeitung f¸r Positionen -->
+<!-- Hier beginnt die Angebotsbearbeitung f√ºr Positionen -->
 <!-- Positionen -->
 <div>
   <table class="plist" style="font-size:10px;">
     <thead>
       <tr>
-	    <th style="width:100px;">Pos.</th>
         <th style="width:100px;">Menge</th>
         <th style="width:100px;border-left:1px solid grey;">Einheit</th>
         <th style="width:900px;border-left:1px solid grey;">Beschreibung</th>
@@ -152,22 +160,23 @@ include '../../inc/connect.php';
     </thead>
     <tbody id="docpos">
       <tr>
-	    <td valign=top style="width:100px;"><input type=text class="pos" name="pos[]" value="1" size="4" /></td>
-        <td valign=top style="width:100px;"><input type=text class="anz" name="anz[]" value="1" size="4" /></td>
+        <td valign=top style="width:100px;"><?php echo "<input type=text class='anz' name='anz[]' value='$pos1anz' size='4' />"; ?></td>
         <td valign=top style="width:100px;">
-          <select name="einheit[]">
-            <option value="Lfm.">Lfm.</option>
-            <option value="Pal.">Pal.</option>
-            <option value="pschl.">pschl.</option>
-            <option value="Pkg.">Pkg.</option>
-            <option value="Std.">Std.</option>
-            <option value="Stk.">Stk.</option>
+          <select name='einheit[]'>
+	    <?php echo "<option>$pos1einheit</option>"; ?>
+	    <option>-----</option>
+            <option value='Lfm.'>Lfm.</option>
+            <option value='Pal.'>Pal.</option>
+            <option value='pschl.'>pschl.</option>
+            <option value='Pkg.'>Pkg.</option>
+            <option value='Std.'>Std.</option>
+            <option value='Stk.'>Stk.</option>
           </select>
         </td>
         <td valign=top><input type="text" list="artikelliste" name="artikelsuche" id="artikelsuche" autocomplete="off" placeholder="Artikelsuche" style="width:700px;"><button type="button" class="button3" style="width:185px;">Artikel &uuml;bernehmen</button><br>
-          <textarea style="width:900px;" rows=7 name=dsc[] class="artikelbeschreibung"></textarea>
+          <?php echo "<textarea style='width:900px;' rows=7 name=dsc[] class='artikelbeschreibung'>$pos1dsc</textarea>"; ?>
         </td>
-        <td valign=top style="width:100px;"><input type=text class="ep" name="ep[]" value="" size="4" /></td>
+        <td valign=top style="width:100px;"> <?php echo "<input type=text class='ep' name='ep[]' value='$pos1ep' size='4' />"; ?> </td>
         <td valign=top style="width:100px;"><input type=text class="poserab" name="poserab[]" value="0" size="4" /></td>
         <td valign=top style="width:100px;"><input type=text class="posprab" name="posprab[]" value="1" size="4" /></td>
         <td valign=top><input style="color:red;" type=button class="del" name="del[]" value=" X " /></td>
@@ -183,7 +192,7 @@ include '../../inc/connect.php';
 
 <div class="column70">
   <div class="column50">
-    <textarea name="zahlungsbedingungen" id="zahlungsbedingungen" rows="10" cols="30" placeholder="Zahlungsbedingungen"></textarea>
+    <?php echo "<textarea name='zahlungsbedingungen' id='zahlungsbedingungen' rows='10' cols='30' placeholder='Zahlungsbedingungen'>$zahlungsbedingungen</textarea>"; ?>
   </div>
 
   <div class="column50">
@@ -197,7 +206,7 @@ include '../../inc/connect.php';
       <div class="column1">Gesamtrabatt %<input type=text class="gesprab" name="gesprab" value="1" size="4"></div>
     </div>
   </div>
-  <input class="button" type="submit" name="angebot-erstellen" value="Angebot erstellen">
+  <input class="button" type="submit" name="angebot-bearbeiten" value="Angebot speichern">
 
 </div>
 
@@ -206,7 +215,7 @@ include '../../inc/connect.php';
     <label>&nbsp;Summe Netto:</label><input type="text" name="netto" id="netto" value="" readonly="" style="border:none;background-color:transparent;width:60%;text-align:left;" tabindex="32000"><br>
     <label>&nbsp;Rabatt / Nachlass:</label><input type="text" name="gr" id="gr" value="" readonly="" style="border:none;background-color:transparent;width:60%;text-align:left;" tabindex="32000"><br>
     <label>&nbsp;Summe Netto nach Abzug:</label><input type="text" name="nettoabzug" id="nettoabzug" value="" readonly="" style="border:none;background-color:transparent;width:60%;text-align:left;" tabindex="32000"><br>
-    <label>&nbsp;MwSt 19,00%:</label><input type="text" name="mwst" id="steuer" value="" readonly="" style="border:none;background-color:transparent;width:60%;text-align:left;" tabindex="32000"><br>
+    <label>&nbsp;MwSt <?php echo $steuersatz; ?>%:</label><input type="text" name="mwst" id="steuer" value="" readonly="" style="border:none;background-color:transparent;width:60%;text-align:left;" tabindex="32000"><br>
     <label style="font-weight:bold;">&nbsp;Gesamt Brutto:</label><input type="text" name="brutto" id="brutto" value="" readonly="" style="border:none;background-color:transparent;width:60%;text-align:left;font-weight:bold;" tabindex="32000">
   </div>
 </div>

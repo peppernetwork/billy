@@ -54,12 +54,15 @@
     </div>
   </div>
   <div class="dropdown">
-    <button class="dropbtn">Artikel
+    <button class="dropbtn">Texte
       <i class="fa fa-caret-down"></i>
     </button>
     <div class="dropdown-content">
-      <a href="../../module/artikel/artikel-hinzufuegen.php">Artikel anlegen</a>
-      <a href="../../module/artikel/artikel-anzeigen.php">Artikel anzeigen</a>
+      <a href="../../module/texte/artikel-hinzufuegen.php">Artikel anlegen</a>
+      <a href="../../module/texte/artikel-anzeigen.php">Artikel anzeigen</a>
+      <a href="../../module/texte/baustein-hinzufuegen.php">Baustein anlegen</a>
+      <a href="../../module/texte/bausteine-anzeigen.php">Bausteine anzeigen</a>
+
     </div>
   </div>
   <div class="dropdown">
