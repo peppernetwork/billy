@@ -2,10 +2,10 @@
 // (1) DATABASE CONFIG
 // ! CHANGE THESE TO YOUR OWN !
 define('DB_HOST', 'localhost');
-define('DB_NAME', 'c3billydb');
+define('DB_NAME', 'database');
 define('DB_CHARSET', 'utf8');
-define('DB_USER', 'c3billy');
-define('DB_PASSWORD', 'vssKNpZ_67');
+define('DB_USER', 'user');
+define('DB_PASSWORD', 'password');
 
 // (2) CONNECT TO DATABASE
 try {
