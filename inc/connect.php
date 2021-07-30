@@ -1,8 +1,8 @@
 <?php
 $host_name = 'localhost';
-$user_name = 'c3billy';
-$password = 'vssKNpZ_67';
-$database = 'c3billydb';
+$user_name = 'user';
+$password = 'password';
+$database = 'database';
 
 $connect = mysqli_connect($host_name, $user_name, $password, $database);
 mysqli_query($connect, "SET NAMES 'utf8'");
