@@ -2,7 +2,7 @@
 
 //fetchsuche.php
 
-$connect = new PDO("mysql:host=localhost;dbname=c3billydb", "c3billy", "vssKNpZ_67");
+$connect = new PDO
 
 $output = '';
 
