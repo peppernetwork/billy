@@ -40,8 +40,8 @@
       <i class="fa fa-caret-down"></i>
     </button>
     <div class="dropdown-content">
-      <a href="../../rechnung_erstellen.php">Rechnung erstellen</a>
-      <a href="../../rechnungen_anzeigen.php">Rechnungen anzeigen</a>
+      <a href="../../module/rechnungen/rechnung_auswahl.php">Rechnung erstellen</a>
+      <a href="../../module/rechnungen/rechnungen_anzeigen.php">Rechnungen anzeigen</a>
     </div>
   </div>
   <div class="dropdown">

@@ -1,10 +1,10 @@
 <?php
-    if(isset($_POST["angebot-erstellen"])){
+    if(isset($_POST["rechnung-erstellen"])){
 
 //Datenbank-Verbindung herstellen
 include '../../inc/connect.php';
 
-    //Nutzereingabe aus Angebotsposition in Variablen speichern
+    //Nutzereingabe aus Rechnungsposition in Variablen speichern
 	$kunde = $_POST["kunde"];
 	$anrede = $_POST["anrede"];
 	$datum = $_POST["datum"];
@@ -31,7 +31,7 @@ include '../../inc/connect.php';
 	$pos2prab = $_POST['posprab'][1];
 
     // 3. String fuer SQL-Anweisung erstellen
-	$insertString = "INSERT INTO angebote (kunde, anrede, datum, referenz, zahlungsbedingungen, geserab, gesprab, netto, mwst, brutto, pos1, pos1anz, pos1einheit, pos1dsc, pos1ep, pos1erab, pos1prab, pos2, pos2anz, pos2einheit, pos2dsc, pos2ep, pos2erab, pos2prab)
+	$insertString = "INSERT INTO rechnungen (kunde, anrede, datum, referenz, zahlungsbedingungen, geserab, gesprab, netto, mwst, brutto, pos1, pos1anz, pos1einheit, pos1dsc, pos1ep, pos1erab, pos1prab, pos2, pos2anz, pos2einheit, pos2dsc, pos2ep, pos2erab, pos2prab)
 	VALUES ('$kunde', '$anrede', '$datum', '$referenz', '$zahlungsbedingungen', '$geserab', '$gesprab', '$netto', '$mwst', '$brutto', '$pos1', '$pos1anz', '$pos1einheit', '$pos1dsc', '$pos1ep', '$pos1erab', '$pos1prab', '$pos2', '$pos2anz', '$pos2einheit', '$pos2dsc', '$pos2ep', '$pos2erab', '$pos2prab');";
 
     // SQL-Anweisung durchfuehren
@@ -39,7 +39,7 @@ include '../../inc/connect.php';
 
     if($check) {
         $insertId = mysqli_insert_id($connect);
-        header('Location: angebot_bearbeiten.php?auswahl=' . $insertId . '&created=true');
+        header('Location: rechnung_bearbeiten.php?auswahl=' . $insertId . '&created=true');
     } else {
         echo '<span style="color: red;" /><strong>Fehler beim Erstellen</strong></span>';
     }
@@ -52,7 +52,6 @@ include '../../inc/nav.php';
      <link rel="stylesheet" href="../../css/angebot.css" type="text/css">
 
 <style>
-
 textarea {
   width: 100%;
   padding: 12px 20px;
@@ -68,7 +67,7 @@ textarea {
 
 <section>
 
-<h1>Angebot erstellen</h1>
+<h1>Rechnung erstellen</h1>
 
 <?php
 // Hier wird der Kunde ausgegeben, welcher zuvor ausgewählt wurde.
@@ -97,7 +96,7 @@ textarea {
 }		
 
     // 5. Das Bearbeiten-Formular anzeigen
-	echo "<form action='angebot_erstellen.php' method='post'>";
+	echo "<form action='rechnung_erstellen.php' method='post'>";
 	echo "<div class='column3'>";
 	echo "<input name='id' type='hidden' value='$id'>";
 	echo "<textarea name='kunde' rows='10' cols='30'>$firma\n$vorname $nachname\n$strasse\n$plz $ort</textarea>";
@@ -136,11 +135,11 @@ textarea {
 </div>
 <div class="column3">
   <input type="date" name="datum" value="<?php echo date('Y-m-d'); ?>" />
-  <input type="text" disabled name="angebotid" placeholder="Angebotsnummer (wird automatisch vergeben)" />
+  <input type="text" disabled name="rechnungid" placeholder="Rechnungsnummer (wird automatisch vergeben)" />
   <input type="text" name="referenz" placeholder="Referenz" />
 </div>
 
-<!-- Hier beginnt die Angebotsbearbeitung für Positionen -->
+<!-- Hier beginnt die Rechnungsbearbeitung für Positionen -->
 <!-- Positionen -->
 <div>
   <table class="plist" style="font-size:10px;">
@@ -205,7 +204,7 @@ textarea {
       <div class="column1">Gesamtrabatt %<input type=text class="gesprab" name="gesprab" value="1" size="4"></div>
     </div>
   </div>
-  <input class="button" type="submit" name="angebot-erstellen" value="Angebot erstellen">
+  <input class="button" type="submit" name="rechnung-erstellen" value="Rechnung erstellen">
 
 </div>
 

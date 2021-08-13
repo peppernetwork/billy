@@ -5,7 +5,10 @@ include 'inc/nav.php';
 
 <section>
 <h2>Changelog</h2><br><br>
-23.11.2020 - v.0.1.8 - Javascript f&uuml;r Angebots erstellung &Uuml;berarbeitetn, Artikelsuche in Angebote erstellen integriert.<br><br>
+13.08.2021 - v.0.2.1 - Rechnungsmodul erstellt, Javascript für Rechnungen erstellt, Fetchrechnungen erstellt, Nav bearbeitet <br><br>
+12.08.2021 - v.0.2.0 - Angebot bearbeiten erstellt<br><br>
+05.08.2021 - v.0.1.9 - Angebot erstellen &uuml;berarbeitet<br><br>
+23.11.2020 - v.0.1.8 - Javascript f&uuml;r Angebots erstellung &Uuml;berarbeitet, Artikelsuche in Angebote erstellen integriert.<br><br>
 19.11.2020 - v.0.1.7 - Artikel anlegen, Artikel anzeigen & bearbeiten erstellt.<br><br>
 16.11.2020 - v.0.1.6 - Angebote erstellen um Gesamtrabatt erweitert<br><br>
 12.11.2020 - v.0.1.5 - Angebote erstellen erstellt<br><br>

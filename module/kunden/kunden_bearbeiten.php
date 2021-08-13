@@ -74,7 +74,7 @@ if(isset($_POST["bearbeitungAbschicken"])){
 	$ust = $_POST["ust"];
 	$steuernr = $_POST["steuernr"];
 
-//String für Update-Anweisung erstellen
+//String fuer Update-Anweisung erstellen
 $update = "UPDATE kunden SET
 firma ='$firma',
 anrede ='$anrede',
@@ -91,7 +91,7 @@ ust ='$ust',
 steuernr ='$steuernr'
 WHERE id = $id";
 
-//MySQL-Anweisung ausfÃ¼hren
+//MySQL-Anweisung ausf�hren
     mysqli_query($connect, $update);
 
     echo "Kundendaten bearbeitet.<br><br>";

@@ -2,7 +2,7 @@
 
 //fetchartikel.php
 
-$connect = new PDO("mysql:host=localhost;dbname=database", "user", "password");
+$connect = new PDO("mysql:host=localhost;dbname=c3billydb", "c3billy", "vssKNpZ_67");
 
 $output = '';
 

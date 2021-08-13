@@ -281,6 +281,23 @@ success {
   background-color: #F39200;
 }
 
+.button4 {  
+  width: 50%;
+  background-color: #19A293;
+  font-size: medium;
+  color: white;
+  padding: 14px 20px;
+  margin: 8px 0;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.button4:hover {
+  background-color: #F39200;
+}
+
+
   /*************/
  /*** Suche ***/
 /*************/

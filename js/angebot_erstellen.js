@@ -50,7 +50,7 @@ container.addEventListener("click", function(e) {
 function insertPos() {
   const newTr = container.querySelector("tr").cloneNode(true);
   [...newTr.querySelectorAll("input, textarea")].forEach(inp => inp.value="");
-  newTr.querySelector(".pos").value=('<?php echo $posno++ ;?>');
+  newTr.querySelector(".pos").value=0;
   newTr.querySelector(".anz").value=1;
   newTr.querySelector(".poserab").value=0;
   newTr.querySelector(".posprab").value=1;

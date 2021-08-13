@@ -12,19 +12,16 @@ if(isset($_POST["query"]))
 {
  $search = str_replace(",", "|", $_POST["query"]);
  $query = "
- SELECT * FROM kunden 
- WHERE Firma REGEXP '".$search."' 
- OR Vorname REGEXP '".$search."' 
- OR Nachname REGEXP '".$search."' 
- OR strasse REGEXP '".$search."' 
- OR plz REGEXP '".$search."' 
- OR ort REGEXP '".$search."'
+ SELECT * FROM rechnungen 
+ WHERE rechnungid REGEXP '".$search."' 
+ OR kunde REGEXP '".$search."' 
+ OR referenz REGEXP '".$search."' 
  ";
 }
 else
 {
  $query = "
- SELECT * FROM kunden ORDER BY ID
+ SELECT * FROM rechnungen ORDER BY rechnungid
  ";
 }
 

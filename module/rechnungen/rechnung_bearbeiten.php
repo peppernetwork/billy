@@ -22,7 +22,7 @@ textarea {
 
 <section>
 
-<h1>Angebot bearbeiten</h1>
+<h1>Rechnung bearbeiten</h1>
 
 <?php
 
@@ -33,17 +33,17 @@ include '../../inc/connect.php';
 if(isset($_GET["auswahl"])){
 
   if ($_GET["created"]) {
-    echo '<span style="color: green;" /><strong>Angebot erfolgreich erstellt</strong></span>';
+    echo '<span style="color: green;" /><strong>Rechnung erfolgreich erstellt</strong></span>';
   }
 
     // 3. Datenbankabfrage starten
 	$id = $_GET["auswahl"];
-	$abfrage = "SELECT * FROM angebote WHERE angebotid = $id";
+	$abfrage = "SELECT * FROM rechnungen WHERE rechnungid = $id";
 	$result = mysqli_query($connect, $abfrage);
 
     // 4. Datensatz in Variablen speichern
 	$dsatz = mysqli_fetch_assoc($result);
-	$angebotid = $dsatz["angebotid"];
+	$rechnungid = $dsatz["rechnungid"];
 	$kunde = $dsatz["kunde"];
 	$anrede = $dsatz["anrede"];
 	$datum = $dsatz["datum"];
@@ -72,15 +72,15 @@ if(isset($_GET["auswahl"])){
 }		
 
     // 5. Das Bearbeiten-Formular anzeigen
-	echo "<form action='angebot_bearbeiten.php?auswahl=" . $id . "' method='post'>";
+	echo "<form action='rechnung_bearbeiten.php?auswahl=" . $id . "' method='post'>";
 	echo "<div class='column3'>";
 	echo "<input name='id' type='hidden' value='$id'>";
 	echo "<textarea name='kunde' rows='10' cols='30'>$kunde</textarea>";
 	echo "</div>";
 
-    if(isset($_POST['angebot-bearbeiten']))
+    if(isset($_POST['rechnung-bearbeiten']))
     {
-    header("Location: angebot_bearbeiten.php?auswahl=$id");
+    header("Location: rechnung_bearbeiten.php?auswahl=$id");
     }
 
 // Hier werden Systemeinstellungen ausgegeben
@@ -115,12 +115,12 @@ if(isset($_GET["auswahl"])){
 <div class="column3">
   <?php
     echo "<input type='date' name='datum' value='$datum' />";
-    echo "<input type='text' disabled name='angebotid' placeholder='Angebotsnummer (wird automatisch vergeben)' value='Angebot Nr. $angebotid' />";
+    echo "<input type='text' disabled name='rechnungid' placeholder='Rechnungsnummer (wird automatisch vergeben)' value='Rechnung Nr. $rechnungid' />";
     echo "<input type='text' name='referenz' placeholder='Referenz' value='$referenz' />";
   ?>
 </div>
 
-<!-- Hier beginnt die Angebotsbearbeitung fuer Positionen -->
+<!-- Hier beginnt die Rechnungsbearbeitung fuer Positionen -->
 <!-- Positionen -->
 <div>
   <table class="plist" style="font-size:10px;">
@@ -205,7 +205,7 @@ if(isset($_GET["auswahl"])){
       <div class="column1">Gesamtrabatt %<?php echo "<input type='text' class='gesprab' name='gesprab' value='$gesprab' size='4' /></div>";?>
     </div>
   </div>
-  <input class="button" type="submit" name="angebot-bearbeiten" value="Angebot speichern">
+  <input class="button" type="submit" name="rechnung-bearbeiten" value="Rechnung speichern">
 
 </div>
 
@@ -225,7 +225,7 @@ if(isset($_GET["auswahl"])){
 <!-- Hier beginnt das Datenbank Update -->
 <?php
 //6. Datensatz aktualisieren mit UPDATE
-if(isset($_POST["angebot-bearbeiten"])){
+if(isset($_POST["rechnung-bearbeiten"])){
 	$id = $_POST["id"];
 	$kunde = $_POST["kunde"];
 	$anrede = $_POST["anrede"];
@@ -254,7 +254,7 @@ if(isset($_POST["angebot-bearbeiten"])){
 	$pos2prab = $_POST["posprab"][1];
 
 //String fuer Update-Anweisung erstellen
-$update = "UPDATE angebote SET
+$update = "UPDATE rechnungen SET
 kunde ='$kunde',
 anrede ='$anrede',
 datum ='$datum',
@@ -279,11 +279,11 @@ pos2dsc ='$pos2dsc',
 pos2ep ='$pos2ep',
 pos2erab ='$pos2erab',
 pos2prab ='$pos2prab'
-WHERE angebotid = $id";
+WHERE rechnungid = $id";
 
 //MySQL-Anweisung ausfuehren
     mysqli_query($connect, $update);
-    echo "<a href='angebote_bearbeiten.php>Zur&uuml;ck zur Kunden&uuml;bersicht</a>";
+    echo "<a href='rechnungen_bearbeiten.php>Zur&uuml;ck zur Kunden&uuml;bersicht</a>";
 }
 
 ?>
