@@ -49,8 +49,8 @@
       <i class="fa fa-caret-down"></i>
     </button>
     <div class="dropdown-content">
-      <a href="../../module/zahlung_eingeben.php">Zahlung eingeben</a>
-      <a href="../../module/zahlungen_anzeigen.php">Zahlungen anzeigen</a>
+      <a href="../../module/zahlungen/zahlungen_anzeigen_offen.php">Offene Zahlungen anzeigen</a>
+      <a href="../../module/zahlungen/zahlungen_anzeigen_bezahlt.php">Bezahlte Rechnungen anzeigen</a>
     </div>
   </div>
   <div class="dropdown">

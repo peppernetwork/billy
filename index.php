@@ -20,14 +20,14 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
  
     // Check if username is empty
     if(empty(trim($_POST["username"]))){
-        $username_err = "Please enter username.";
+        $username_err = "<span style=\"color:#ff0000;\">Bitte Benutzername eingeben</span>";
     } else{
         $username = trim($_POST["username"]);
     }
     
     // Check if password is empty
     if(empty(trim($_POST["password"]))){
-        $password_err = "Please enter your password.";
+        $password_err = "<span style=\"color:#ff0000;\">Bitte Passwort eingeben</span>";
     } else{
         $password = trim($_POST["password"]);
     }
@@ -67,12 +67,12 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                             header("location: loginindex.php");
                         } else{
                             // Display an error message if password is not valid
-                            $password_err = "The password you entered was not valid.";
+                            $password_err = "<span style=\"color:#ff0000;\">Passwort falsch</span>";
                         }
                     }
                 } else{
                     // Display an error message if username doesn't exist
-                    $username_err = "No account found with that username.";
+                    $username_err = "<span style=\"color:#ff0000;\">Benutzername falsch</span>";
                 }
             } else{
                 echo "Oops! Something went wrong. Please try again later.";

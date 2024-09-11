@@ -5,7 +5,8 @@ include 'inc/nav.php';
 
 <section>
 <h2>Changelog</h2><br><br>
-13.08.2021 - v.0.2.1 - Rechnungsmodul erstellt, Javascript für Rechnungen erstellt, Fetchrechnungen erstellt, Nav bearbeitet <br><br>
+18.08.2022 - v.0.2.2 - Rechnungen aus Angebot erstellt, Zahlungsziel hinzugef&uuml;gt, Nav bearbeitet, Offene Zahlung erstellt, Bezhalte Rechnungen erstellt, Datenbank angepasst <br><br>
+13.08.2021 - v.0.2.1 - Rechnungsmodul erstellt, Javascript f&uuml;r Rechnungen erstellt, Fetchrechnungen erstellt, Nav bearbeitet <br><br>
 12.08.2021 - v.0.2.0 - Angebot bearbeiten erstellt<br><br>
 05.08.2021 - v.0.1.9 - Angebot erstellen &uuml;berarbeitet<br><br>
 23.11.2020 - v.0.1.8 - Javascript f&uuml;r Angebots erstellung &Uuml;berarbeitet, Artikelsuche in Angebote erstellen integriert.<br><br>

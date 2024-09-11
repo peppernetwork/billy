@@ -40,7 +40,7 @@ include '../../inc/nav.php';
   <div class="column">
     <center>
     <form>
-    <a href="../../module/rechnungen/rechnung_aus_angebot.php"><input type="button" class="button4" value="Angebot aus Rechnung">
+    <a href="../../module/rechnungen/rechnung_aus_angebot.php"><input type="button" class="button4" value="Rechnung aus Angebot">
     </form>
     </center>
   </div>

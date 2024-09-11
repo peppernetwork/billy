@@ -26,7 +26,6 @@ if(isset($_GET["auswahl"])){
 	echo "<div class='column3'>";
 	echo "<form action='systemsettings.php' method='post'>";
 	echo "<input name='id' type='hidden' value='$id'>";
-	echo "<input name='id' type='hidden' value='$id'>";
 	echo "<p><input type='text' name='mwst' value='$mwst'> MwSt. Satz</p>";
 	echo "<br><br><input name='systemeinstellungen-speichern' class='button1' value='Speichern' type='submit'>";
 	echo "</form>";

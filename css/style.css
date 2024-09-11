@@ -177,7 +177,7 @@ input[type=submit] {
 
 input[type=date], select {
   width: 100%;
-  padding: 12px 20px;
+  padding: 11px 20px;
   margin: 8px 0;
   display: inline-block;
   border: 1px solid #ccc;
@@ -202,15 +202,16 @@ input[type=submit]:hover {
   float: left;
   width: 50%;
   padding: 10px;
-  height: 300px; /* Should be removed. Only for demonstration */
+  height: 300px;
 }
 
 .column3 {
   float: left;
   width: 33.33%;
   padding: 10px;
-  height: 300px; /* Should be removed. Only for demonstration */
+  height: 300px;
 }
+
 
 /* Clear floats after the columns */
 .row:after {
@@ -265,7 +266,7 @@ success {
 }
 
 .button3 {  
-  width: 16%;
+  width: 15%;
   background-color: #19A293;
   font-size: 14px;
   color: white;
@@ -297,6 +298,19 @@ success {
   background-color: #F39200;
 }
 
+.button5 {  
+  width: 100%;
+  background-color: #19A293;
+  font-size: medium;
+  color: white;
+  padding: 14px 20px;
+  margin: 8px 0;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+
 
   /*************/
  /*** Suche ***/
@@ -318,6 +332,7 @@ success {
     padding-right: 0px;
     padding-left: 0px;
 }
+
 
 .input-suche {
     width: 83%;
